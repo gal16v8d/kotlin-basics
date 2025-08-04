@@ -26,6 +26,13 @@ fun checkSequence() {
     println(mySequence.toList())
 }
 
+//receptor lambda
+fun buildString(builderAction: StringBuilder.() -> Unit): String {
+    val builder = StringBuilder()
+    builder.builderAction()
+    return builder.toString()
+}
+
 fun main() {
     val sum = {x: Int, y: Int -> x + y}
     println(sum(2, 3))
@@ -39,4 +46,10 @@ fun main() {
     val justNumber = testString.filter { it in '0'..'9' }
     println(justNumber)
     checkSequence()
+    val name = "Maria"
+    val myString = buildString {
+        append("My name is ")
+        append(name)
+    }
+    println(myString)
 }
